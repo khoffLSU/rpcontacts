@@ -1,6 +1,6 @@
 # Realpython Project: Build a Contact Book App With Python, Textual, and SQLite
 
-In this let's code tutorial:
+In this Let's code following a realpython tutorial:
 
 - Create the contact book app’s TUI using Textual
 - Handle the database operations using SQLite
