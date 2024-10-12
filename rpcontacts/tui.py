@@ -3,8 +3,8 @@ from textual.widgets import Header, Footer
 
 class ContactsApp(App):
     def compose(self):
-        yield Header
-        yield Footer
+        yield Header()
+        yield Footer()
     
     def on_mount(self):
         self.title = "RP Contacts"
