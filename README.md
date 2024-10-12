@@ -9,3 +9,7 @@ In this Let's code following a realpython tutorial:
 At the end of this project a functional contact book application will created allowing storage, retrival and management of contact information.
 
 [Url for the tutorial](https://realpython.com/contact-book-python-textual/)
+
+# Step 1: Create the Contact Book’s App With Textual
+
+In this first step, you’ll create a minimal TUI application to provide the foundation on which you’ll start to build the contact book. You’ll also create the required project structure.
