@@ -4,8 +4,10 @@ from textual.screen import Screen
 from textual.widgets import Button, Footer, Header, Label
 
 class ContactsApp(App):
+    CSS_PATH = "rpcontacts.tcss"
     BINDINGS = [
-        ("m", "toggle_dark", "Toggle dark mode")
+        ("m", "toggle_dark", "Toggle dark mode"),
+        ("q", "reset_quit", "Quit"),
     ]
 
     def compose(self):
@@ -18,6 +20,13 @@ class ContactsApp(App):
 
     def action_toggle_dark(self):
         self.dark = not self.dark
+
+    def action_request_quit(self):
+        def check_answer(accepted):
+            if accepted:
+                self.exit()
+            
+        self.push_screen(QuestionDialog("Do you want to quit?"), check_answer)
 
 class QuestionDialog(Screen):
     def __init__(self, message, *args, **kwargs):
