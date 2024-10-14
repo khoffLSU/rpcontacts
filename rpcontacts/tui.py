@@ -7,7 +7,7 @@ class ContactsApp(App):
     CSS_PATH = "rpcontacts.tcss"
     BINDINGS = [
         ("m", "toggle_dark", "Toggle dark mode"),
-        ("q", "reset_quit", "Quit"),
+        ("q", "request_quit", "Quit"),
     ]
 
     def compose(self):
@@ -28,22 +28,24 @@ class ContactsApp(App):
             
         self.push_screen(QuestionDialog("Do you want to quit?"), check_answer)
 
+# ...
+
 class QuestionDialog(Screen):
     def __init__(self, message, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.message = message
 
     def compose(self):
-        no_button = Button("No", variant="primary", id="No")
+        no_button = Button("No", variant="primary", id="no")
         no_button.focus()
 
         yield Grid(
-            Label(self.message, id = "question"),
+            Label(self.message, id="question"),
             Button("Yes", variant="error", id="yes"),
             no_button,
-            id="question-dialog"
+            id="question-dialog",
         )
-    
+
     def on_button_pressed(self, event):
         if event.button.id == "yes":
             self.dismiss(True)
