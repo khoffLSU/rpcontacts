@@ -21,3 +21,7 @@ Now that the skeleton of the contact book app is built, start coding the main TU
 1. Add to add a new contact to the list
 2. Delete to remove the selected contact from the list
 3. Clear All to remove all contacts from the list
+
+# Step 3: Set Up the Contact Book’s Database
+
+At this point the Textual app has an appropriate TUI to build a contact book. In this section, code with be written to operate an SQLite database where the app will store the contact information persistently.
