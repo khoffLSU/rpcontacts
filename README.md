@@ -24,4 +24,12 @@ Now that the skeleton of the contact book app is built, start coding the main TU
 
 # Step 3: Set Up the Contact Book’s Database
 
-At this point the Textual app has an appropriate TUI to build a contact book. In this section, code with be written to operate an SQLite database where the app will store the contact information persistently.
+At this point the Textual app has an appropriate TUI to build a contact book. In this section, code with be written to operate an SQLite database where the app will store the contact information persistently.  
+
+The database operations will be directly related to the features of the contact book app. The app will need to do the following actions on the database:
+
+- Retrieve all the contacts
+- Get the last contact
+- Add a new contact
+- Delete an existing contact
+- Clear all contacts
