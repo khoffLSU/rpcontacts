@@ -20,6 +20,10 @@ class ContactsApp(App):
         ("q", "request_quit", "Quit"),
     ]
 
+    def __init__(self, db):
+        super().__init__()
+        self.db = db
+
     def compose(self):
         yield Header()
         contacts_list = DataTable(classes="contacts-list")
@@ -42,6 +46,13 @@ class ContactsApp(App):
     def on_mount(self):
         self.title = "RP Contacts"
         self.sub_title = "A Contacts book with Textual & Python"
+        self._load_contacts()
+
+    def _load_contacts(self):
+        contacts_list = self.query_one(DataTable)
+        for contact_data in self.db.get_all_contacts():
+            id, *contact, = contact_data
+            contacts_list.add_row(*contact, key=id)
 
     def action_toggle_dark(self):
         self.dark = not self.dark
