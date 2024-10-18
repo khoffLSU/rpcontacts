@@ -33,3 +33,7 @@ The database operations will be directly related to the features of the contact 
 - Add a new contact
 - Delete an existing contact
 - Clear all contacts
+
+# Step 4: Display Existing Contacts on the App’s TUI
+
+To display the contacts’ data in the application’s main TUI, we first load that information from the database. Then we will display the retrieved data in the contacts list of the TUI. Get the contacts’ data from the database using the Database class and its .get_all_contacts() method. For this we only need to pass an instance of this class to ContactsApp.
