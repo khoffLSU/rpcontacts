@@ -42,7 +42,7 @@ class Database:
 
     def delete_contact(self, id):
         self._run_query(
-            "DELETE FROM contacts WHERE if=(?);"
+            "DELETE FROM contacts WHERE if=(?);",
             id,
         )
 
