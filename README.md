@@ -37,3 +37,7 @@ The database operations will be directly related to the features of the contact 
 # Step 4: Display Existing Contacts on the App’s TUI
 
 To display the contacts’ data in the application’s main TUI, we first load that information from the database. Then we will display the retrieved data in the contacts list of the TUI. Get the contacts’ data from the database using the Database class and its .get_all_contacts() method. For this we only need to pass an instance of this class to ContactsApp.
+
+# Step 5: Add New Contacts to the Database and TUI
+
+The contact book application has an appealing TUI that can load and display the information about your existing contacts. In this section the code required to add new contacts to the database will be added. The first step in accomplishing this is to create the Add Contact dialog.
