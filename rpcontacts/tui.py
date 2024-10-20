@@ -6,6 +6,7 @@ from textual.widgets import (
     DataTable,
     Footer,
     Header,
+    Input,
     Label,
     Static
     )
@@ -87,3 +88,40 @@ class QuestionDialog(Screen):
             self.dismiss(True)
         else:
             self.dismiss(False)
+
+class InputDialog(Screen):
+    def compose(self):
+        yield Grid(
+            Label("Add Contact", id="title"),
+            Label("Name:", classes="label"),
+            Input(
+                placeholder="Contact Name",
+                classes="input",
+                id="name",
+            ),
+            Label("Phone:", classes="label"),
+            Input(
+                placeholder="Contact Phone",
+                classes="input",
+                id="phone",
+            ),
+            Label("Email:", classes="label"),
+            Input(
+                placeholder="Contact Email",
+                classes="input",
+                id="email",
+            ),
+            Static(),
+            Button("Cancel", variant="warning",id="cancel"),
+            Button("Okay", variant="success", id="ok"),
+            id="input-dialog",
+        )
+
+        def on_button_pressed(self, event):
+            if event.button.id == "ok":
+                name = self.query_one("#name", Input).value
+                phone = self.query_one("#phone", Input).value
+                email = self.query_one("#email", Input).value
+                self.dismiss((name, phone, email))
+            else:
+                self.dismiss()
