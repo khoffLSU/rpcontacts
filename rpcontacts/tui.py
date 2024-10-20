@@ -1,4 +1,4 @@
-from textual.app import App
+from textual.app import App, on
 from textual.containers import Grid, Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import (
@@ -65,6 +65,16 @@ class ContactsApp(App):
             
         self.push_screen(QuestionDialog("Do you want to quit?"), check_answer)
 
+    @on(Button.Pressed, "#add")
+    def action_add(self):
+        def check_contact(contact_data):
+            if contact_data:
+                self.db.add_contact(contact_data)
+                id, *contact = self.db.get_last_contact()
+                self.query_one(DataTable).add_row(*contact, key=id)
+
+        self.push_screen(InputDialog(), check_contact)
+
 # ...
 
 class QuestionDialog(Screen):
@@ -94,34 +104,22 @@ class InputDialog(Screen):
         yield Grid(
             Label("Add Contact", id="title"),
             Label("Name:", classes="label"),
-            Input(
-                placeholder="Contact Name",
-                classes="input",
-                id="name",
-            ),
+            Input(placeholder="Contact Name", classes="input", id="name"),
             Label("Phone:", classes="label"),
-            Input(
-                placeholder="Contact Phone",
-                classes="input",
-                id="phone",
-            ),
+            Input(placeholder="Contact Phone", classes="input", id="phone"),
             Label("Email:", classes="label"),
-            Input(
-                placeholder="Contact Email",
-                classes="input",
-                id="email",
-            ),
+            Input(placeholder="Contact Email", classes="input", id="email"),
             Static(),
-            Button("Cancel", variant="warning",id="cancel"),
-            Button("Okay", variant="success", id="ok"),
+            Button("Cancel", variant="warning", id="cancel"),
+            Button("Ok", variant="success", id="ok"),
             id="input-dialog",
         )
 
-        def on_button_pressed(self, event):
-            if event.button.id == "ok":
-                name = self.query_one("#name", Input).value
-                phone = self.query_one("#phone", Input).value
-                email = self.query_one("#email", Input).value
-                self.dismiss((name, phone, email))
-            else:
-                self.dismiss()
+    def on_button_pressed(self, event):
+        if event.button.id == "ok":
+            name = self.query_one("#name", Input).value
+            phone = self.query_one("#phone", Input).value
+            email = self.query_one("#email", Input).value
+            self.dismiss((name, phone, email))
+        else:
+            self.dismiss(())
